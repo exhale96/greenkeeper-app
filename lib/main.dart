@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
+import 'bluetooth_page.dart'; // Import Bluetooth page
 
 void main() {
   runApp(const JoystickExampleApp());
@@ -18,7 +19,7 @@ class JoystickExampleApp extends StatelessWidget {
         backgroundColor: Color(0xFF2E3B32),
         appBar: AppBar(
           backgroundColor: Color(0xFF06261D),
-          title: const Text('GreenKeeper',style: TextStyle(color: Colors.white)),
+          title: const Text('GreenKeeper', style: TextStyle(color: Colors.white)),
           centerTitle: true,
         ),
         body: const MainPage(),
@@ -46,6 +47,15 @@ class MainPage extends StatelessWidget {
               );
             },
             label: 'Joystick Control & Mapping',
+          ),
+          Button(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BluetoothPage()), // Navigate to Bluetooth Page
+              );
+            },
+            label: 'Bluetooth Settings',
           ),
         ],
       ),
@@ -77,7 +87,7 @@ class _JoystickExampleState extends State<JoystickExample> {
       appBar: AppBar(
         backgroundColor: Color(0xFF06261D),
         iconTheme: IconThemeData(color: Colors.white),
-        title: const Text('Control/Mapping',style: TextStyle(color: Colors.white)),
+        title: const Text('Control/Mapping', style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -99,8 +109,7 @@ class _JoystickExampleState extends State<JoystickExample> {
                 ),
                 stick: JoystickStick(
                   decoration: JoystickStickDecoration(
-                      color: Color(0xFFd0d1bc),
-                     // shadowColor: Color.fromARGB(255, 255, 223, 0)
+                    color: Color(0xFFd0d1bc),
                   ),
                 ),
                 listener: (details) {
